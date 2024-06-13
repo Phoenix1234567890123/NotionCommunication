@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900">
     <title>Document</title>
     <style>
-body{
+body {
     background-color: white;
 }
   
@@ -27,16 +27,16 @@ body{
 }
 
 .days {
-  background: #EF2F3C;
+  background: #8DCAE6;
 }
 
 .hours {
   background: #eeeeee;
-  color: #183059;
+  color: #219EBC;
 }
 
 .minutes {
-  background: #276FBF;
+  background: #219EBC;
 }
 
 .seconds {
@@ -45,14 +45,14 @@ body{
 
 .numbers {
   font-family: 'Montserrat', sans-serif;
-  color:  #183059;
+  color: #183059;
   font-size: 4em;
   text-align: center;
 }
 
 .white {
   position: absolute;
-  background:  #eeeeee;
+  background: #eeeeee;
   height: 85px;
   width: 75px;
   left: 30%;
@@ -61,22 +61,20 @@ body{
 
 .red {
   position: absolute;
-  background:  #EF2F3C;
+  background: #8DCAE6;
   left: 18%;
   top: 9%;
   height: 65px;
   width: 70px;
- 
 }
 
 .blue {
   position: absolute;
-  background:  #276FBF;
+  background: #219EBC;
   height: 80px;
   width: 80px;
   left: 60%;
   top: 5%;
-
 }
 
     </style>
@@ -86,43 +84,36 @@ body{
 <div id="timer">
 
     <div class="days"> 
-        <div id="days" class="numbers "> </div>days</div> 
-      <div class="hours"> 
-        <div  id="hours" class="numbers"> </div>hours</div> 
-      <div class="minutes"> 
-        <div  id="minutes" class="numbers"> </div>minutes</div> 
-      <div   class="seconds"> 
+        <div id="days" class="numbers"> </div>days</div> 
+    <div class="hours"> 
+        <div id="hours" class="numbers"> </div>hours</div> 
+    <div class="minutes"> 
+        <div id="minutes" class="numbers"> </div>minutes</div> 
+    <div class="seconds"> 
         <div id="seconds" class="numbers"> </div>seconds</div> 
-      </div>
+    </div>
 
 </div>
 
 </body>
 <script>
-    const year = new Date().getFullYear();
-    const myDate = new Date(`Jun 17, ${year} 00:00:00`);
+    const myDate = new Date('Jun 17, ${2025} 00:00:00'); 
 
-// countdown
-let timer = setInterval(function() {
+    // countdown
+    let timer = setInterval(function() {
+        const today = new Date().getTime();
+        const diff = myDate - today;
 
-  // get today's date
-  const today = new Date().getTime();
+        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-  // get the difference
-  const diff = myDate - today;
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
 
-  // math
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-  // display
-  document.getElementById("days").innerHTML = days;
-  document.getElementById("hours").innerHTML = hours;
-  document.getElementById("minutes").innerHTML = minutes;
-  document.getElementById("seconds").innerHTML = seconds;
-
-}, 1000);
+    }, 1000); // 1초마다 업데이트
 </script>
 </html>
